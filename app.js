@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(__dirname + 'dist/index.html');
+  res.sendFile('dist/index.html', { root: __dirname });
 });
 
 /**
