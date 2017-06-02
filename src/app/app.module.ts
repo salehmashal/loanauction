@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { HeaderChatComponent } from './header-chat/header-chat.component';
 import { MenuNavComponent } from './menu-nav/menu-nav.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { EnduserMainComponent } from './enduser-main/enduser-main.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     HeaderComponent,
     HeaderChatComponent,
     MenuNavComponent,
-    NavigationComponent
+    NavigationComponent,
+    EnduserMainComponent
   ],
   imports: [
     BrowserModule
