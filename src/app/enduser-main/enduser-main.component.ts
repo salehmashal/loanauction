@@ -11,5 +11,11 @@ export class EnduserMainComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  onClick(){
+  
+  console.log("my profile");
+  
+  }
 
 }
