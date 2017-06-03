@@ -8,6 +8,18 @@ import { MenuNavComponent } from './menu-nav/menu-nav.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { EnduserMainComponent } from './enduser-main/enduser-main.component';
 import { LoginComponent } from './login/login.component';
+import { HttpModule } from '@angular/http';
+import { LoginService } from './login/login.service';
+import { FormsModule }   from '@angular/forms';
+import { Routes,RouterModule } from '@angular/router';
+import { RegisterationComponent } from './registeration/registeration.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+
+const appRoutes: Routes=[
+{ path:'',component: LoginComponent},
+{ path:'registeration',component: RegisterationComponent},
+{ path:'resetpass',component: ForgotpasswordComponent}
+];
 
 @NgModule({
   declarations: [
@@ -17,12 +29,17 @@ import { LoginComponent } from './login/login.component';
     MenuNavComponent,
     NavigationComponent,
     EnduserMainComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterationComponent,
+    ForgotpasswordComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
