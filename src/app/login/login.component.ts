@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Response } from '@angular/http'
 import * as $ from 'jquery';
 import * as toastr from 'toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,17 +13,18 @@ import * as toastr from 'toastr';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginservice: LoginService) { }
+  constructor(private loginservice: LoginService,private router: Router) { }
   
   onSignin(form:NgForm){
           const email=form.value.email;
           const password=form.value.password;
           
           this.loginservice.loginService(email,password).subscribe(
-          function(data){
-          toastr["success"]("Welcome "+data.json().user.username)
-          localStorage.setItem("access_token",data.json().access_token);
-          localStorage.setItem("user",JSON.stringify(data.json().user));
+          (response: Response)=>{
+          toastr["success"]("Welcome "+response.json().user.username)
+          localStorage.setItem("access_token",response.json().access_token);
+          localStorage.setItem("user",JSON.stringify(response.json().user));
+          this.router.navigate(['/home']);
           },function(e){
           toastr.options = {
               "closeButton": true,
