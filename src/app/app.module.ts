@@ -10,6 +10,7 @@ import { EnduserMainComponent } from './enduser-main/enduser-main.component';
 import { LoginComponent } from './login/login.component';
 import { HttpModule } from '@angular/http';
 import { LoginService } from './login/login.service';
+import { HeaderService } from './header/header.service';
 import { FormsModule }   from '@angular/forms';
 import { Routes,RouterModule } from '@angular/router';
 import { RegisterationComponent } from './registeration/registeration.component';
@@ -40,7 +41,7 @@ const appRoutes: Routes=[
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [LoginService],
+  providers: [LoginService,HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

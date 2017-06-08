@@ -13,7 +13,16 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginservice: LoginService,private router: Router) { }
+  constructor(private loginservice: LoginService,private router: Router) {
+  const access_token=localStorage.getItem("access_token");
+  const uuid=localStorage.getItem("userId");
+  if(access_token){
+   this.router.navigate(['/home']);
+  }
+  
+  }
+  
+   
   
   onSignin(form:NgForm){
           const email=form.value.email;
@@ -23,26 +32,10 @@ export class LoginComponent implements OnInit {
           (response: Response)=>{
           toastr["success"]("Welcome "+response.json().user.username)
           localStorage.setItem("access_token",response.json().access_token);
+          localStorage.setItem("userId",response.json().user.uuid);
           localStorage.setItem("user",JSON.stringify(response.json().user));
           this.router.navigate(['/home']);
           },function(e){
-          toastr.options = {
-              "closeButton": true,
-              "debug": false,
-              "newestOnTop": false,
-              "progressBar": true,
-              "positionClass": "toast-top-right",
-              "preventDuplicates": true,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-          };
           toastr["error"](e.json().error_description)
           });
   }
